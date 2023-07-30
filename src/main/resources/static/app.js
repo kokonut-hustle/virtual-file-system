@@ -1,4 +1,4 @@
-const socket = new WebSocket("ws://localhost:8080/ws");
+const socket = new WebSocket("wss://virtual-file-system-f3afa8f866d4.herokuapp.com/ws");
 
 var term = new window.Terminal({
     cursorBlink: true
