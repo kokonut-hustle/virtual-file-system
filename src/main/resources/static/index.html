@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/xterm@4.19.0/css/xterm.css" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Virtual File System</title>
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+<header>
+    <h1>Welcome to My Virtual File System</h1>
+</header>
+<main>
+    <div class="container">
+        <div id="terminal"></div>
+    </div>
+    <!-- Add other content or elements here -->
+    <div class="container">
+        <button class="button" onclick="location.href='/'" type="button">Refresh Page</button>
+        <button class="button" onclick="location.href='/manual'" type="button">User Manual</button>
+    </div>
+</main>
+<footer>
+    <p>&copy; 2023 My Website. All rights reserved.</p>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/xterm@4.19.0/lib/xterm.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

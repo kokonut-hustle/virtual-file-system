@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Virtual File System</title>
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+<header>
+    <h1>My Virtual File System User Manual</h1>
+</header>
+<main>
+    <div class="paragraph">
+        <h1>Welcome to my Virtual File System</h1>
+        <p>
+            If params (path, name) contains spaces, you should enclose the entire params in double quotes ("").
+            For example, to navigate to a folder named "My Documents," you would use the command: cd
+            "My Documents".
+        </p>
+        <p>
+            <b>cd FOLDER_PATH</b>: The <b>cd</b> command is used to change the current working directory
+            in your application.
+        </p>
+        <p>
+            <b>cr [-p] PATH [DATA]</b>: if <b>DATA</b> is specified, create a new file, otherwise create a
+            new folder.
+        </p>
+        <p>
+            <b>cat FILE_PATH</b>: show the content of a file at <b>FILE_PATH</b>.
+        </p>
+        <p>
+            <b>ls [FOLDER_PATH]</b>: list out all items directly under a folder.
+        </p>
+        <p>
+            <b>find NAME [FOLDER_PATH]</b>: search all files/folders whose name contains the substring <b>NAME</b>.
+        </p>
+        <p>
+            <b>up PATH NAME [DATA]</b>: update the file/folder at <b>PATH</b> to have new <b>NAME</b> and,
+            optionally, new <b>DATA</b>.
+        </p>
+        <p>
+            <b>mv PATH FOLDER_PATH</b>: move a file/folder at <b>PATH</b> into the destination <b>FOLDER_PATH</b>
+        </p>
+        <p>
+            <b>rm PATH [PATH2 PATH3...]</b>: remove files/folders at the specified <b>PATH</b>(s)
+        </p>
+    </div>
+    <!-- Add other content or elements here -->
+    <div class="container">
+        <button class="button" onclick="location.href='/'" type="button">To Main Page</button>
+    </div>
+</main>
+<footer>
+    <p>&copy; 2023 My Website. All rights reserved.</p>
+</footer>
+<script src="../static/app.js"></script>
+</body>
+</html>
