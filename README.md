@@ -45,3 +45,8 @@ In the code, I created a CommandHandler interface, with each type of command hav
 To prevent conflicts when multiple users write the same data simultaneously, every command that changes the data is defined as a transaction. This may lead to longer processing times, but it ensures data consistency.
 
 I chose to add an index on the `path` column since it is frequently called, which can improve performance when retrieving records. However, it may slightly slow down updates to the path.
+
+## TODO
+- Improve UI/UX, performance
+- Refactor code
+- Optimize
