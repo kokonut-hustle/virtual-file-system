@@ -62,6 +62,24 @@ public class MvCommandHandler implements CommandHandler {
             return message.toString();
         }
 
+        List<FileMetadata> destChildren = fileMetadataService.getFileMetadataByParentId(destMetadata.getId());
+        for (FileMetadata child : destChildren) {
+            System.out.println("child " + child.getName());
+            System.out.println("source " + sourceMetadata.getName());
+            if (child.getName().equals(sourceMetadata.getName())) {
+                if ((child.isDir() && sourceMetadata.isDir()) ||
+                        (!child.isDir() && !sourceMetadata.isDir())) {
+                    message.setStatus("success");
+                    message.pushInfo("destination dir must not have child item with the same name of source item");
+                    message.setCurDir(curDir);
+
+                    return message.toString();
+                }
+            }
+        }
+
+        // Start moving
+
         // Update size of parent
         Long size = sourceMetadata.getSize();
         String curPath = "/";
