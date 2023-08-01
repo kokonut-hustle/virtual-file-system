@@ -38,6 +38,7 @@ public class CommandParser {
     }
 
     public Command parseCommand(String commandText) {
+        commandText = commandText.trim();
         // Initialize the command object
         Command command = new Command();
 

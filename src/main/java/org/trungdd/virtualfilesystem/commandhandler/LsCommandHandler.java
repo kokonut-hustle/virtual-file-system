@@ -39,13 +39,25 @@ public class LsCommandHandler implements CommandHandler {
                 Long parentId = parent.getId();
                 List<FileMetadata> fileMetadataList = fileMetadataService.getFileMetadataByParentId(parentId);
 
-                message.pushInfo("parent folder name: " + parent.getName() +
-                        ", created at: " + parent.getCreatedAt() +
-                        ", size: " + parent.getSize());
+                String formatString = "%-15s %-20s %-30s %s";
+                String tableHeader = String.format(formatString, "Name", "Type", "Created At", "Size");
+
+                message.pushInfo(tableHeader);
+
+                String parentFolder = String.format(formatString, parent.getName(),
+                        "parent folder", parent.getCreatedAt(), parent.getSize());
+
+                message.pushInfo(parentFolder);
                 for (FileMetadata fileMetadata : fileMetadataList) {
-                    message.pushInfo("child name: " + fileMetadata.getName() +
-                            ", created at: " + fileMetadata.getCreatedAt() +
-                            ", size: " + fileMetadata.getSize());
+                    if (fileMetadata.isDir()) {
+                        message.pushInfo(String.format(formatString, fileMetadata.getName(),
+                                "folder", fileMetadata.getCreatedAt(),
+                                fileMetadata.getSize()));
+                    } else {
+                        message.pushInfo(String.format(formatString, fileMetadata.getName(),
+                                "file", fileMetadata.getCreatedAt(),
+                                fileMetadata.getSize()));
+                    }
                 }
                 message.setStatus("success");
                 message.setCurDir(absoluteFolderPath);
