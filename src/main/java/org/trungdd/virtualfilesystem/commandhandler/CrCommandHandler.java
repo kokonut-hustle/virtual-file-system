@@ -155,7 +155,7 @@ public class CrCommandHandler implements CommandHandler {
 
                     message.setStatus("success");
                     message.pushInfo("Directory created at: " + absolutePath);
-                    message.setCurDir(parentPath);
+                    message.setCurDir(absolutePath);
                     return message.toString();
                 } catch (Exception e) {
                     System.out.println(e.getMessage());

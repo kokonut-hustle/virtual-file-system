@@ -83,11 +83,12 @@ socket.onmessage = (event) => {
         currentDirectory = '/';
     } else if (data.infoes) {
         currentDirectory = data.curDir;
+        term.write('\r\n');
         data.infoes.forEach(info => {
-            console.log(info);
-            prompt(term);
+            term.write('\r\n  ');
             term.write(info);
         });
+        term.write('\r\n');
     } else {
         prompt(term);
         term.write("Something wrong happened");
