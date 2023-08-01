@@ -44,17 +44,24 @@ public class LsCommandHandler implements CommandHandler {
 
                 message.pushInfo(tableHeader);
 
-                String parentFolder = String.format(formatString, parent.getName(),
+                String parentName = (parent.getName().length() > 10) ?
+                        "..." + parent.getName().substring(parent.getName().length() - 10) :
+                        parent.getName();
+                String parentFolder = String.format(formatString, parentName,
                         "parent folder", parent.getCreatedAt(), parent.getSize());
 
                 message.pushInfo(parentFolder);
                 for (FileMetadata fileMetadata : fileMetadataList) {
+                    String itemName = (fileMetadata.getName().length() > 10) ?
+                            "..." + fileMetadata.getName().substring(fileMetadata.getName().length() - 10) :
+                            fileMetadata.getName();
+
                     if (fileMetadata.isDir()) {
-                        message.pushInfo(String.format(formatString, fileMetadata.getName(),
+                        message.pushInfo(String.format(formatString, itemName,
                                 "folder", fileMetadata.getCreatedAt(),
                                 fileMetadata.getSize()));
                     } else {
-                        message.pushInfo(String.format(formatString, fileMetadata.getName(),
+                        message.pushInfo(String.format(formatString, itemName,
                                 "file", fileMetadata.getCreatedAt(),
                                 fileMetadata.getSize()));
                     }
