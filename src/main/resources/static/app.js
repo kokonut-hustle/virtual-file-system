@@ -25,6 +25,9 @@ function init() {
     term.prompt = () => {
         term.write('\r\n$ ');
     };
+
+    term.write('Please type your command in here\r\n');
+
     prompt(term);
 
     term.onData(e => {

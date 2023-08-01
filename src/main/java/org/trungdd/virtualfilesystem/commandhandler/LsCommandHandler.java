@@ -31,19 +31,37 @@ public class LsCommandHandler implements CommandHandler {
         // Retrieve the file metadata for the specified folder path
         FileMetadata parent = fileMetadataService.getFileMetadataByPath(absoluteFolderPath);
         if (parent != null) {
-            Long parentId = parent.getId();
-            List<FileMetadata> fileMetadataList = fileMetadataService.getFileMetadataByParentId(parentId);
+            if (!parent.isDir()) {
+                message.setStatus("success");
+                message.pushInfo("path is not a directory: " + absoluteFolderPath);
+                message.setCurDir(curDir);
+            } else {
+                Long parentId = parent.getId();
+                List<FileMetadata> fileMetadataList = fileMetadataService.getFileMetadataByParentId(parentId);
 
-            message.pushInfo("parent folder name: " + parent.getName() +
-                    ", created at: " + parent.getCreatedAt() +
-                    ", size: " + parent.getSize());
-            for (FileMetadata fileMetadata : fileMetadataList) {
-                message.pushInfo("child name: " + fileMetadata.getName() +
-                        ", created at: " + fileMetadata.getCreatedAt() +
-                        ", size: " + fileMetadata.getSize());
+                String formatString = "%-15s %-20s %-30s %s";
+                String tableHeader = String.format(formatString, "Name", "Type", "Created At", "Size");
+
+                message.pushInfo(tableHeader);
+
+                String parentFolder = String.format(formatString, parent.getName(),
+                        "parent folder", parent.getCreatedAt(), parent.getSize());
+
+                message.pushInfo(parentFolder);
+                for (FileMetadata fileMetadata : fileMetadataList) {
+                    if (fileMetadata.isDir()) {
+                        message.pushInfo(String.format(formatString, fileMetadata.getName(),
+                                "folder", fileMetadata.getCreatedAt(),
+                                fileMetadata.getSize()));
+                    } else {
+                        message.pushInfo(String.format(formatString, fileMetadata.getName(),
+                                "file", fileMetadata.getCreatedAt(),
+                                fileMetadata.getSize()));
+                    }
+                }
+                message.setStatus("success");
+                message.setCurDir(absoluteFolderPath);
             }
-            message.setStatus("success");
-            message.setCurDir(absoluteFolderPath);
         } else {
             message.setStatus("success");
             message.pushInfo("path not found: " + absoluteFolderPath);
